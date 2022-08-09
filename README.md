@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: read-version
-        uses: sadi304/flutter-version-number-action@main
+        uses: sadi304/flutter-version-number-action@v1.0.0
         with:
           file-path: example/pubspec.yaml
 ```
