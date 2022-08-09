@@ -1,6 +1,6 @@
 name: flutter-version-number
 description: 'Reads the version number of the pubspec.yaml'
-author: NiklasLehnfeld
+author: sadi304
 branding:
   icon: 'archive'
   color: 'green'
@@ -10,7 +10,13 @@ inputs:
     required: false
     default: "./pubspec.yaml"
 outputs:
-  version-number:
+  full-version:
+    description: "Full version including build number"
+    value: ${{ steps.read-yaml.outputs.full_version }}
+  version:
+    description: "Version number"
+    value: ${{ steps.read-yaml.outputs.version }}
+  build-number:
     description: "Version number"
     value: ${{ steps.read-yaml.outputs.version }}
 runs:
@@ -18,6 +24,10 @@ runs:
   steps:
     - id: read-yaml
       run: |
-        VERSION=`cat ${{inputs.file-path}} | grep -o 'version:[^:]*' | cut -f2 -d":" | xargs`
+        FULL_VERSION=`cat ${{inputs.file-path}} | grep -o 'version:[^:]*' | cut -f2 -d":" | xargs`
+        VERSION=${FULL_VERSION%+*}
+        BUILD_NUMBER=${FULL_VERSION#*+}
+        echo "::set-output name=full-version::$(echo $FULL_VERSION)"
         echo "::set-output name=version::$(echo $VERSION)"
+        echo "::set-output name=build-number::$(echo $BUILD_NUMBER)"
       shell: bash
