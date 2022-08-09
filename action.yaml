@@ -12,13 +12,13 @@ inputs:
 outputs:
   full-version:
     description: "Full version including build number"
-    value: ${{ steps.read-yaml.outputs.full_version }}
+    value: ${{ steps.read-yaml.outputs.full-version }}
   version:
     description: "Version number"
     value: ${{ steps.read-yaml.outputs.version }}
   build-number:
     description: "Version number"
-    value: ${{ steps.read-yaml.outputs.version }}
+    value: ${{ steps.read-yaml.outputs.build-number }}
 runs:
   using: "composite"
   steps:
