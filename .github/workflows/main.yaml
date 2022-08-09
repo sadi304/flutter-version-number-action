@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: Test
+name: Test outputs
 jobs:
   test:
     name: test
