@@ -24,7 +24,8 @@ jobs:
 ```
 
 ### Outputs
-
+```
 steps.read-version.outputs.full-version (1.0.1+12)
 steps.read-version.outputs.version (1.0.1)
 steps.read-version.outputs.build-number (12)
+```
